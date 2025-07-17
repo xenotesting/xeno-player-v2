@@ -1,108 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Xeno Quote Generator</title>
-  <style>
-    /* Black Mango font-face */
-    @font-face {
-      font-family: "Black Mango";
-      src:
-        url("fonts/black-mango-regular.woff2") format("woff2"),
-        url("fonts/black-mango-regular.woff") format("woff"),
-        url("fonts/black-mango-regular.otf") format("opentype"),
-        url("fonts/black-mango-regular.ttf") format("truetype");
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
-    }
+<style>
+  /* Black Mango font-face */
+  @font-face {
+    font-family: "Black Mango";
+    src:
+      url("fonts/black-mango-regular.woff2") format("woff2"),
+      url("fonts/black-mango-regular.woff") format("woff"),
+      url("fonts/black-mango-regular.otf") format("opentype"),
+      url("fonts/black-mango-regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
 
-    body {
-      background-color: #000;
-      color: white;
-      font-family: "Black Mango", sans-serif;
-      margin: 0;
-      padding: 60px 20px;
-      text-align: center;
-    }
+  body {
+    background-color: #000;
+    color: white;
+    font-family: Arial, sans-serif; /* Default font for body */
+    margin: 0;
+    padding: 60px 20px;
+    text-align: center;
+  }
 
-    /* Glowing title */
-    .glow {
-      font-size: 4rem;
-      font-weight: bold;
-      color: #fff;
-      text-shadow:
-        0 0 5px #0ff,
-        0 0 10px #0ff,
-        0 0 20px #0ff,
-        0 0 40px #0ff,
-        0 0 80px #0ff;
-      margin-bottom: 40px;
-    }
+  /* Glowing title with Black Mango font */
+  .glow {
+    font-family: "Black Mango", sans-serif;
+    font-size: 4rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow:
+      0 0 5px #0ff,
+      0 0 10px #0ff,
+      0 0 20px #0ff,
+      0 0 40px #0ff,
+      0 0 80px #0ff;
+    margin-bottom: 40px;
+  }
 
-    /* Quote styling */
-    #quote {
-      font-style: italic;
-      font-size: 1.8rem;
-      max-width: 700px;
-      margin: 0 auto 60px auto;
-      color: #ccc;
-      text-shadow: 0 0 3px #666;
-      min-height: 100px; /* keeps space if quote short */
-    }
+  /* Quote styling in Arial with white glow */
+  #quote {
+    font-family: Arial, sans-serif;
+    font-style: italic;
+    font-size: 1.8rem;
+    max-width: 700px;
+    margin: 0 auto 60px auto;
+    color: #ccc;
+    text-shadow:
+      0 0 5px #fff,
+      0 0 10px #fff;
+    min-height: 100px; /* keeps space if quote short */
+  }
 
-    /* About dropdown styles */
-    .about-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 0 auto;
-      max-width: 700px;
-    }
+  /* About dropdown styles */
+  .about-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 700px;
+  }
 
-    .about-btn {
-      background: #000;
-      color: #fff;
-      border: none;
-      padding: 12px 28px;
-      font-size: 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.25s;
-      user-select: none;
-      margin-bottom: 10px;
-      width: 180px;
-    }
+  .about-btn {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.25s;
+    user-select: none;
+    margin-bottom: 10px;
+    width: 180px;
+  }
 
-    .about-btn:hover {
-      background: #222;
-    }
+  .about-btn:hover {
+    background: #222;
+  }
 
-    .about-content {
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.4s ease, padding 0.4s ease;
-      background: #000;
-      color: #fff;
-      border-radius: 10px;
-      width: 100%;
-      padding: 0 20px;
-      text-align: center;
-      box-sizing: border-box;
-      font-size: 1rem;
-      line-height: 1.5;
-      user-select: text;
-    }
+  .about-content {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    background: #000;
+    color: #fff;
+    border-radius: 10px;
+    width: 100%;
+    padding: 0 20px;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 1rem;
+    line-height: 1.5;
+    user-select: text;
+  }
 
-    .about-content.open {
-      max-height: 300px;
-      padding: 20px;
-    }
-  </style>
-</head>
+  .about-content.open {
+    max-height: 300px;
+    padding: 20px;
+  }
+</style>
+
 <body>
-
   <h1 class="glow">Xeno Quote Generator</h1>
 
   <div id="quote">Loading quote...</div>
@@ -111,7 +108,7 @@
     <button class="about-btn" id="aboutBtn">About</button>
     <div class="about-content" id="aboutContent">
       <p>
-        This is a simple quote generator that shows a random music-related quote on each page load.
+        This is a simple quote generator that shows a random silly quote on each page load.
         Built with 🖤 entirely in HTML / CSS / JavaScript.
         <br><br>
         Refresh the page to get a new quote!
